@@ -1,0 +1,25 @@
+RESUMEN DEL DATAFRAME - S30 EA2
+Estudiante: José David Osorio Gallego
+Identificador del dataset: adityasuyal/cafe-sales-cleaned
+Archivo: cleaned_cafe_sales.csv
+Split/configuración: train (archivo CSV completo)
+Revisión: f4e6dfa1fe791ba84807921c949bd84f02b4bc69
+Origen: Hugging Face; versión limpia de datos sintéticos de cafetería
+Muestra: no; archivo CSV limpio completo
+Filas: 9540
+Columnas: 8
+
+COLUMNAS, TIPOS DE PANDAS Y VALORES NULOS
+- Transaction ID | tipo=object | nulos=0
+- Item | tipo=object | nulos=0
+- Quantity | tipo=float64 | nulos=0
+- Price Per Unit | tipo=float64 | nulos=0
+- Total Spent | tipo=float64 | nulos=0
+- Payment Method | tipo=object | nulos=0
+- Location | tipo=object | nulos=0
+- Transaction Date | tipo=object | nulos=0
+
+NOTA DE INTERPRETACIÓN
+Los nulos de Pandas no incluyen categorías de texto como 'Unknown'.
+Location = 'Unknown': 3779 registros.
+Las filas son transacciones sintéticas; no representan un negocio real.
