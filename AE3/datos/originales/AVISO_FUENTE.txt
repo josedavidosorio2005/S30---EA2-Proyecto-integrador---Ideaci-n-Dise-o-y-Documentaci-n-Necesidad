@@ -1,0 +1,12 @@
+Fuente: Cafe Sales Dataset (Cleaned), publicador Aditya Suyal.
+URL: https://huggingface.co/datasets/adityasuyal/cafe-sales-cleaned
+Revision: f4e6dfa1fe791ba84807921c949bd84f02b4bc69
+Archivo: cleaned_cafe_sales.csv
+Licencia declarada por el publicador: MIT (ver FICHA_FUENTE.md).
+Se conserva la ficha del publicador sin alteraciones, con su atribucion y aviso de licencia.
+La copia CSV original no se modifica; AE3 incorpora una version preparada derivada.
+Datos sinteticos: no corresponden a una empresa ni a personas reales.
+La fuente ya imputa productos y pagos por moda, cantidades y precios por mediana,
+recalcula el importe y elimina fechas invalidas. AE3 no presenta esas decisiones
+como propias y no puede identificar las imputaciones por fila con el archivo limpio.
+Consulta: 7 de noviembre de 2026.
