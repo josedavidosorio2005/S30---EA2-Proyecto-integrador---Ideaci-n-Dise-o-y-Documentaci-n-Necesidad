@@ -1,0 +1,14 @@
+variable,significado,tipo,unidad,origen_o_regla
+id_transaccion,Identificador del registro original,string,Sin unidad,Transaction ID; conservar unicidad
+producto,Producto del menú,category,Categoría,Item; mismas ocho etiquetas
+cantidad,Unidades del registro,Int64,Unidades,Quantity; conversión exacta a entero
+precio_unitario_usd,Precio por unidad,float64,USD/unidad,Price Per Unit; sin conversión monetaria
+importe_usd,Importe del registro en el CSV limpio,float64,USD,Total Spent; se conserva
+medio_pago,Medio de pago registrado,category,Categoría,Payment Method; etiquetas originales
+modalidad,Modalidad declarada o desconocida,category,Categoría,Location; Unknown se mantiene
+fecha,Fecha de la transacción,datetime64[ns],AAAA-MM-DD,Transaction Date; pd.to_datetime con formato exacto
+anio,Año de cobertura,int16,Año,fecha.dt.year; verifica alcance 2023
+mes,Periodo de agregación,string,AAAA-MM,"fecha.dt.to_period(""M""); responde P3"
+importe_calculado_usd,Importe independiente de comprobación,float64,USD,"round(cantidad × precio_unitario_usd, 2); valida P2"
+diferencia_importe_usd,Diferencia de conciliación,float64,USD,"round(importe_usd − importe_calculado_usd, 2); valida P2"
+modalidad_conocida,Indicador de cobertura,bool,Booleano,"modalidad != ""Unknown""; responde P4"

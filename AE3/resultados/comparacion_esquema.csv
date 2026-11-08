@@ -1,0 +1,9 @@
+columna_original,columna_final,tipo_antes,tipo_despues,nulos_antes,nulos_despues
+Transaction ID,id_transaccion,object,string,0,0
+Item,producto,object,category,0,0
+Quantity,cantidad,float64,Int64,0,0
+Price Per Unit,precio_unitario_usd,float64,float64,0,0
+Total Spent,importe_usd,float64,float64,0,0
+Payment Method,medio_pago,object,category,0,0
+Location,modalidad,object,category,0,0
+Transaction Date,fecha,object,datetime64[ns],0,0

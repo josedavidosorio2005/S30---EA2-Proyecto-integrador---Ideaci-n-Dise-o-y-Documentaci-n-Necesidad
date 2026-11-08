@@ -1,0 +1,32 @@
+{
+  "revision_fuente": "f4e6dfa1fe791ba84807921c949bd84f02b4bc69",
+  "url_fuente": "https://huggingface.co/datasets/adityasuyal/cafe-sales-cleaned/resolve/f4e6dfa1fe791ba84807921c949bd84f02b4bc69/cleaned_cafe_sales.csv",
+  "sha256_original": "f1271f9ecffdbd4928e21b624c71ff7fe29e1eb79d3f7426e93076e49c4b30ca",
+  "filas_antes": 9540,
+  "columnas_antes": 8,
+  "filas_despues": 9540,
+  "columnas_despues": 13,
+  "unidades": 28850,
+  "importe_usd": 85246.5,
+  "python": "3.12.14",
+  "pandas": "2.2.3",
+  "numpy": "2.3.5",
+  "validaciones_agrupaciones": 20,
+  "exportaciones_releidas": 12,
+  "archivos_sha256": {
+    "AE3/datos/preparados/cafe_2023_preparado.csv": "2112747639e2cfe028cf65c79ae1f992420cb516ca79dd79b7c1ae776bb4a3d0",
+    "AE3/resultados/comparacion_esquema.csv": "57d20b10d191d20984085354158aacc5bbf023003bb705d8d199b8a40c41df25",
+    "AE3/resultados/controles_calidad.csv": "a4ef612961c4709199722460c32808f9b3a2d6c4b11028792dbba31d92966498",
+    "AE3/resultados/diccionario_datos.csv": "6f34b63f4891680b42957327b0bc4116da935b0a34d0cb97fc28500906dd23bb",
+    "AE3/resultados/matriz_preguntas.csv": "43c4bef4386df59727c48727619874d698e83d1f7604027b7358da2e9161e34a",
+    "AE3/resultados/p1_unidades_producto.csv": "bd5e245677258eacacf893c72eee247f0fe9b12f9c65337154987df410ee9422",
+    "AE3/resultados/p2_importe_producto.csv": "4790f03b89ca0a32b2db4b2bcc124a48b5f01748bdcd8655416bde5cafc2654b",
+    "AE3/resultados/p3_ventas_mes.csv": "5bba72a014f56d26cd3269978f6796c421b8ef8a07eeddf23e79b8dab0a18aff",
+    "AE3/resultados/p4_cobertura_modalidad.csv": "03b3f40b03c26574086be79a287ac1c63f8f0e817a2a9f6d2283d1852209cf7a",
+    "AE3/resultados/registro_transformaciones.csv": "ce2c6eb26a8e5a84a731b0f49cea15832cfd9bac3993f98135e7850979b186f8",
+    "AE3/resultados/validaciones.csv": "ba04c89e9b0909b72cabab6221a5462837aec87dc9d62ed2771d8af899570225",
+    "AE3/resultados/ventas_mes_producto.csv": "7941f40d7f435b4b723f061011a927788cb8022076cf6f4ea83a7bc452033c57",
+    "AE3/resultados/resumen_dataframe.txt": "2cd9d064bef4de9306e3378119d50c209237729b354bdbb2f5c48bddd44d8f31",
+    "AE3/resultados/interpretaciones.json": "e632fe8c96ce5a9aa7a7de63de47588bc4125ad6fdfe3e8b34d38a71baba991a"
+  }
+}

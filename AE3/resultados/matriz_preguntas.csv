@@ -1,0 +1,5 @@
+pregunta_id,pregunta,variables_originales,nivel,resultado_esperado,archivo
+P1,¿Cómo se distribuyen las unidades vendidas entre productos en 2023?,"Item, Quantity, Transaction Date",Producto,Unidades y participación porcentual,p1_unidades_producto.csv
+P2,¿Cómo se distribuye el importe registrado entre productos en 2023?,"Item, Total Spent, Transaction Date",Producto,USD y participación porcentual,p2_importe_producto.csv
+P3,¿Cómo varían los importes registrados por mes durante 2023?,"Transaction Date, Item, Total Spent, Quantity",Mes; complemento mes y producto,"USD, unidades y variación mensual porcentual",p3_ventas_mes.csv
+P4,¿Qué proporción de registros e importes tiene modalidad desconocida?,"Location, Total Spent",Modalidad,"Registros, USD y porcentajes de cobertura",p4_cobertura_modalidad.csv

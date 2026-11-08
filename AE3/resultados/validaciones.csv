@@ -1,0 +1,21 @@
+validacion,resultado
+p1_unidades_producto conserva registros,APROBADA
+p1_unidades_producto conserva unidades,APROBADA
+p1_unidades_producto participacion_unidades_pct suma 100,APROBADA
+p2_importe_producto conserva registros,APROBADA
+p2_importe_producto conserva total USD,APROBADA
+p2_importe_producto participacion_importe_pct suma 100,APROBADA
+p3_ventas_mes conserva registros,APROBADA
+p3_ventas_mes conserva total USD,APROBADA
+p3_ventas_mes conserva unidades,APROBADA
+p3_ventas_mes participacion_importe_pct suma 100,APROBADA
+p4_cobertura_modalidad conserva registros,APROBADA
+p4_cobertura_modalidad conserva total USD,APROBADA
+p4_cobertura_modalidad participacion_registros_pct suma 100,APROBADA
+p4_cobertura_modalidad participacion_importe_pct suma 100,APROBADA
+ventas_mes_producto conserva registros,APROBADA
+ventas_mes_producto conserva total USD,APROBADA
+ventas_mes_producto conserva unidades,APROBADA
+Los doce meses de 2023 están presentes,APROBADA
+Detalle contiene 12 meses por 8 productos,APROBADA
+Solo enero carece de variación intermensual,APROBADA

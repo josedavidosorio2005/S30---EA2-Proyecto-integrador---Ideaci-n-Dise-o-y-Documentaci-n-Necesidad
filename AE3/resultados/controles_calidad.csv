@@ -1,0 +1,19 @@
+control,registros_o_valores_detectados,criterio,tratamiento
+Valores nulos en origen,0,No imputar automáticamente,Conservar; no se detectó problema
+Espacios externos en id_transaccion,0,Recortar espacios sin alterar significado,Sin cambios de contenido
+Espacios externos en producto,0,Recortar espacios sin alterar significado,Sin cambios de contenido
+Espacios externos en medio_pago,0,Recortar espacios sin alterar significado,Sin cambios de contenido
+Espacios externos en modalidad,0,Recortar espacios sin alterar significado,Sin cambios de contenido
+Filas duplicadas,0,No borrar sin identificar su causa,Conservar; no se detectó problema
+Identificadores duplicados,0,Se exige identificador único,Conservar; no se detectó problema
+Fechas inválidas,0,Formato exacto AAAA-MM-DD; detener si falla,Conservar; no se detectó problema
+Registros fuera de 2023,0,Alcance anual definido en AE2,Conservar; no se detectó problema
+No positivos o no finitos en cantidad,0,"Cantidad, precio e importe deben ser positivos",Conservar; no se detectó problema
+No positivos o no finitos en precio_unitario_usd,0,"Cantidad, precio e importe deben ser positivos",Conservar; no se detectó problema
+No positivos o no finitos en importe_usd,0,"Cantidad, precio e importe deben ser positivos",Conservar; no se detectó problema
+Cantidades fraccionarias,0,Convertir a entero solo si no pierde información,Conservar; no se detectó problema
+Categorías fuera del catálogo en producto,0,Catálogo de la ficha fuente; Unknown es categoría válida,Conservar; no se detectó problema
+Categorías fuera del catálogo en medio_pago,0,Catálogo de la ficha fuente; Unknown es categoría válida,Conservar; no se detectó problema
+Categorías fuera del catálogo en modalidad,0,Catálogo de la ficha fuente; Unknown es categoría válida,Conservar; no se detectó problema
+Desajustes cantidad por precio,0,Tolerancia medio centavo; no sustituir el importe original,Conservar; no se detectó problema
+Modalidad desconocida,3779,No imputar ni excluir; cuantificar la cobertura,Conservar Unknown y añadir indicador booleano

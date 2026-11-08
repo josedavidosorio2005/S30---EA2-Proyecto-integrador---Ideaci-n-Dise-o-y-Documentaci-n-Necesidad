@@ -1,0 +1,10 @@
+operacion,filas_afectadas,justificacion
+Renombrar 8 columnas,9540,Etiquetas en español; no cambia valores
+Convertir fecha de texto a datetime,9540,Permite delimitar el año y agrupar meses
+Convertir cantidad de float64 a Int64,9540,Todas las cantidades son enteras; sin redondeo
+"Tipar producto, pago y modalidad como category",9540,Tres campos por fila; se conservan etiquetas y Unknown
+Recortar espacios externos,0,Sin correcciones si el conteo es cero
+Eliminar filas,0,No se detectan problemas que justifiquen eliminación
+Imputar faltantes,0,El CSV limpio no contiene nulos; Unknown se conserva
+Cambiar unidad monetaria,0,Se mantiene USD; no se convierte a COP
+Añadir cinco variables derivadas,9540,"Año, mes, importe calculado, diferencia y cobertura"

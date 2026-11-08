@@ -1,0 +1,103 @@
+AE3 | Jose David Osorio Gallego
+Dataset: adityasuyal/cafe-sales-cleaned
+Revisión: f4e6dfa1fe791ba84807921c949bd84f02b4bc69
+SHA256 CSV original: f1271f9ecffdbd4928e21b624c71ff7fe29e1eb79d3f7426e93076e49c4b30ca
+Filas: 9540
+Columnas: 13
+Periodo: 2023-01-01 a 2023-12-31
+Unidades totales: 28850
+Importe total USD: 85246.50
+Modalidad Unknown: 3779
+
+ESQUEMA Y NULOS
+                                  tipo  nulos  porcentaje_nulos
+id_transaccion                  string      0               0.0
+producto                      category      0               0.0
+cantidad                         Int64      0               0.0
+precio_unitario_usd            float64      0               0.0
+importe_usd                    float64      0               0.0
+medio_pago                    category      0               0.0
+modalidad                     category      0               0.0
+fecha                   datetime64[ns]      0               0.0
+anio                             int16      0               0.0
+mes                             string      0               0.0
+importe_calculado_usd          float64      0               0.0
+diferencia_importe_usd         float64      0               0.0
+modalidad_conocida                bool      0               0.0
+
+DATAFRAME.INFO
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 9540 entries, 0 to 9539
+Data columns (total 13 columns):
+ #   Column                  Non-Null Count  Dtype         
+---  ------                  --------------  -----         
+ 0   id_transaccion          9540 non-null   string        
+ 1   producto                9540 non-null   category      
+ 2   cantidad                9540 non-null   Int64         
+ 3   precio_unitario_usd     9540 non-null   float64       
+ 4   importe_usd             9540 non-null   float64       
+ 5   medio_pago              9540 non-null   category      
+ 6   modalidad               9540 non-null   category      
+ 7   fecha                   9540 non-null   datetime64[ns]
+ 8   anio                    9540 non-null   int16         
+ 9   mes                     9540 non-null   string        
+ 10  importe_calculado_usd   9540 non-null   float64       
+ 11  diferencia_importe_usd  9540 non-null   float64       
+ 12  modalidad_conocida      9540 non-null   bool          
+dtypes: Int64(1), bool(1), category(3), datetime64[ns](1), float64(4), int16(1), string(2)
+memory usage: 662.2 KB
+
+ESTADÍSTICAS NUMÉRICAS
+       cantidad  precio_unitario_usd  importe_usd    anio  importe_calculado_usd  diferencia_importe_usd
+count    9540.0          9540.000000  9540.000000  9540.0            9540.000000                  9540.0
+mean   3.024109             2.952673     8.935692  2023.0               8.935692                     0.0
+std    1.384186             1.243449     5.827677     0.0               5.827677                     0.0
+min         1.0             1.000000     1.000000  2023.0               1.000000                     0.0
+25%         2.0             2.000000     4.000000  2023.0               4.000000                     0.0
+50%         3.0             3.000000     8.000000  2023.0               8.000000                     0.0
+75%         4.0             4.000000    12.000000  2023.0              12.000000                     0.0
+max         5.0             5.000000    25.000000  2023.0              25.000000                     0.0
+
+ESTADÍSTICAS TEMPORALES
+                               fecha
+count                           9540
+mean   2023-07-01 23:00:31.698113536
+min              2023-01-01 00:00:00
+25%              2023-04-01 00:00:00
+50%              2023-07-02 00:00:00
+75%              2023-10-02 00:00:00
+max              2023-12-31 00:00:00
+
+FRECUENCIAS CATEGÓRICAS
+producto
+producto
+Juice       2051
+Coffee      1123
+Salad       1099
+Cake        1082
+Sandwich    1075
+Smoothie    1048
+Cookie      1035
+Tea         1027
+
+medio_pago
+medio_pago
+Digital Wallet    5212
+Credit Card       2170
+Cash              2158
+
+modalidad
+modalidad
+Unknown     3779
+Takeaway    2889
+In-store    2872
+
+modalidad_conocida
+modalidad_conocida
+True     5761
+False    3779
+
+LIMITACIONES
+Datos sintéticos. No se infieren rentabilidad, causalidad ni estacionalidad.
+El publicador imputó variables y recalculó importes; no hay marcas de imputación por fila.
+Unknown expresa información desconocida aunque isna() reporte cero.

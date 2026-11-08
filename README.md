@@ -1,65 +1,126 @@
-# Proyecto integrador de analítica descriptiva de ventas de cafetería
+# Analítica descriptiva de ventas de cafetería · AE2 y AE3
 
-**Autor:** José David Osorio Gallego  
-**Actividad:** S30 - EA2 - Ideación, diseño y documentación de una necesidad analítica  
-**Asignatura:** Proyecto Integrado III - Analítica de Datos  
-**Docente:** Andrés Felipe Callejas  
-**Grupo:** PREICA2602B020038
+**Autor:** Jose David Osorio Gallego  
+**Asignatura:** Proyecto Integrado III – Analítica de Datos  
+**Docente:** Andrés Felipe Callejas · **Grupo:** PREICA2602B020038  
+**Institución:** Institución Universitaria Digital de Antioquia
 
-## Propósito
+## Entrega AE3
 
-Este proyecto plantea una necesidad de información para una cafetería hipotética: identificar cómo se distribuyen las unidades vendidas y los importes de ventas entre tipos de productos durante 2023. La etapa AE2 se limita a reconocer los datos, documentar el problema propuesto y establecer el diseño de un futuro análisis descriptivo.
+Se conserva **AE2 sin modificaciones** y se añade el avance en `AE3/`, con el mismo proyecto, pregunta central y revisión del dataset. Se incluye la copia local original para reproducir el análisis sin Internet.
 
-## Dataset
+- [Word actualizado](AE3/documento/AE3_Jose_David_Osorio_Gallego.docx)
+- [Notebook ejecutado con salidas reales](AE3/notebooks/02_transformacion_enriquecimiento.ipynb)
+- [Transformaciones y exportación](AE3/src/analisis.py)
+- [CSV preparado](AE3/datos/preparados/cafe_2023_preparado.csv)
+- [Resumen descriptivo TXT generado por código](AE3/resultados/resumen_dataframe.txt)
+- [Manifiesto y SHA256](AE3/resultados/manifiesto_ejecucion.json)
 
-- Repositorio: [`adityasuyal/cafe-sales-cleaned`](https://huggingface.co/datasets/adityasuyal/cafe-sales-cleaned)
-- Archivo: `cleaned_cafe_sales.csv`; el visor de Hugging Face lo presenta como split `train`.
-- Revisión fijada: `f4e6dfa1fe791ba84807921c949bd84f02b4bc69`.
-- Licencia indicada: MIT.
-- Procedencia: datos sintéticos de transacciones de cafetería, limpiados y publicados en Hugging Face.
-- Cobertura de la versión seleccionada: 9.540 filas, 8 columnas y fechas de 2023. **Se usa el archivo limpio completo**, no una muestra elaborada en este proyecto.
+## Necesidad y preguntas
 
-Estos registros no corresponden a una cafetería colombiana ni son evidencia de un problema real de ventas. Sirven para diseñar y practicar un análisis descriptivo.
+La cafetería es hipotética. Se necesita describir la distribución de unidades e importes entre productos en 2023. P1 y P2 descomponen la pregunta central de AE2; P3 desarrolla su complemento mensual previsto; P4 cuantifica la limitación de modalidad ya identificada.
 
-## Estructura
+| Pregunta | Variables originales | Nivel | CSV en AE3/resultados/ |
+|---|---|---|---|
+| P1 ¿Cómo se distribuyen las unidades entre productos? | Item, Quantity, Transaction Date | Producto | p1_unidades_producto.csv |
+| P2 ¿Cómo se distribuye el importe entre productos? | Item, Total Spent, Transaction Date | Producto | p2_importe_producto.csv |
+| P3 ¿Cómo varían los importes por mes? | Transaction Date, Item, Quantity, Total Spent | Mes | p3_ventas_mes.csv |
+| P4 ¿Qué proporción tiene modalidad desconocida? | Location, Total Spent | Modalidad | p4_cobertura_modalidad.csv |
 
-```text
-AE2/
-  documento/
-    EA2_S30_Jose_David_Osorio_Gallego.docx
-  notebooks/
-    01_reconocimiento_dataset.ipynb
-  resultados/
-    resumen_dataframe.txt
-README.md
-requirements.txt
-.gitignore
+El complemento `ventas_mes_producto.csv` contiene 96 filas por mes y producto. Las tablas tienen niveles diferentes: no se concatenan para sumar importes, pues representan los mismos registros.
+
+## Fuente y límites
+
+- Aditya Suyal. [Cafe Sales Dataset Cleaned](https://huggingface.co/datasets/adityasuyal/cafe-sales-cleaned).
+- Revisión de AE2: `f4e6dfa1fe791ba84807921c949bd84f02b4bc69`.
+- Original: `AE3/datos/originales/cleaned_cafe_sales.csv`; 597.388 bytes, 9.540 filas y 8 columnas; archivo completo.
+- SHA256: `f1271f9ecffdbd4928e21b624c71ff7fe29e1eb79d3f7426e93076e49c4b30ca`.
+- Cobertura: 2023-01-01 a 2023-12-31. Moneda USD y licencia MIT declaradas en la [ficha fuente conservada](AE3/datos/originales/FICHA_FUENTE.md); ver `AVISO_FUENTE.txt`.
+- Datos **sintéticos**, sin información de personas o una empresa real.
+- El publicador imputó productos y pagos por moda, cantidades y precios por mediana, recalculó importes y retiró 460 filas sin fecha válida. AE3 no realiza esa limpieza previa. El archivo limpio no identifica las imputaciones por fila, por lo que no puede medirse su efecto exacto.
+
+No se infieren rentabilidad, causalidad, estacionalidad ni pronósticos. Unknown es una categoría desconocida, aunque pandas no la cuente como nulo.
+
+## Transformaciones y enriquecimiento
+
+Se conserva el CSV original y un respaldo del DataFrame. Se renombran las ocho columnas en español, se convierte la fecha con formato exacto, se convierte cantidad de float64 a Int64 tras comprobar que todos los valores son enteros y se tipan producto, pago y modalidad como categorías conservando etiquetas. Los campos de pago e identificador se retienen para trazabilidad.
+
+No se eliminan filas ni columnas, no se imputan valores ni se convierte USD a COP. Los controles detectan cero nulos, duplicados, fechas inválidas, categorías inesperadas, espacios externos y desajustes cantidad × precio. Los problemas nuevos detienen la ejecución en vez de eliminarse silenciosamente. Unknown permanece en 3.779 filas.
+
+| Variable nueva | Regla | Utilidad |
+|---|---|---|
+| anio | Año de fecha | Verificar cobertura 2023 |
+| mes | Periodo AAAA-MM | Agregación temporal P3 |
+| importe_calculado_usd | Cantidad × precio, a dos decimales | Comprobar importes P2 |
+| diferencia_importe_usd | Importe menos calculado | Conciliar sin sobrescribir el origen |
+| modalidad_conocida | Modalidad distinta de Unknown | Medir cobertura P4 |
+
+No se unen otras fuentes. El resultado tiene **9.540 filas y 13 columnas**. En `AE3/resultados/` se exportan también `registro_transformaciones.csv`, `controles_calidad.csv`, `comparacion_esquema.csv`, `diccionario_datos.csv`, `matriz_preguntas.csv`, `validaciones.csv` e `interpretaciones.json`. Los conteos de filas afectadas por distintas conversiones no son aditivos.
+
+## Resultados y verificaciones
+
+- Total: **28.850 unidades y USD 85.246,50**.
+- Juice: **6.141 unidades (21,29 %) y USD 18.249,00 (21,41 %)**; encabeza ambas distribuciones.
+- Mayor importe mensual: junio, **USD 7.417,50**. Menor: febrero, **USD 6.673,00**.
+- Unknown: **3.779 registros (39,61 %) y USD 33.818,50 (39,67 %)**; permanece en todos los totales.
+
+Se aprueban 20 conciliaciones de agrupaciones. Se exportan y releen 12 CSV, incluido el preparado, para contrastar valores; se reconstruyen tipos y se compara el DataFrame completo. El TXT se sobrescribe desde el DataFrame final en cada ejecución e incluye dimensiones, columnas, tipos, nulos, estadísticas numéricas y temporales y frecuencias categóricas. Se compara con una nueva generación desde el mismo DataFrame.
+
+Las participaciones usan el total anual completo. La variación mensual es (importe actual / anterior − 1) × 100; enero queda vacío porque falta diciembre de 2022, sin imputar cero. Los CSV de resultados conservan diez decimales y el Word muestra dos: la suma de porcentajes mostrados puede diferir mínimamente de 100 por redondeo. Registros significa filas, no clientes.
+
+## Ejecución desde la raíz
+
+Recomendado: Python 3.11 o 3.12, con un entorno virtual.
+
+```bash
+python -m venv .venv
 ```
 
-## Ejecución
+Activar en PowerShell: `.\.venv\Scripts\Activate.ps1`. En Linux/macOS: `source .venv/bin/activate`.
 
-1. Descargar o clonar este repositorio.
-2. Abrir una terminal desde su carpeta raíz.
-3. Crear un entorno virtual (recomendado) e instalar las dependencias: `python -m pip install -r requirements.txt`.
-4. Iniciar Jupyter: `jupyter notebook` o `jupyter lab`.
-5. Abrir `AE2/notebooks/01_reconocimiento_dataset.ipynb` y ejecutar todas las celdas en orden.
-6. Verificar que el notebook muestre las primeras filas, dimensiones, tipos, columnas y conteos de nulos, y que regenere `AE2/resultados/resumen_dataframe.txt`.
+```bash
+python -m pip install -r requirements.txt
+python -m jupyter lab
+```
 
-La primera ejecución necesita conexión a Internet para obtener el CSV público desde Hugging Face. La URL está fijada a una revisión específica para reproducibilidad. No se necesita token de acceso.
+Abrir `AE3/notebooks/02_transformacion_enriquecimiento.ipynb` y ejecutar **todas las celdas**. Las rutas son relativas al repositorio y admiten iniciar desde raíz, AE3 o AE3/notebooks. No requiere Internet tras instalar dependencias; los datos ya están incluidos.
 
-## Criterios de interpretación
+Para regenerar solo CSV, TXT e interpretaciones:
 
-- `Total Spent` se expresa en USD según la ficha del publicador y no representa ingresos de una empresa real.
-- La etiqueta literal `Unknown` en `Location` no es `NaN`: se conserva como categoría y se documenta como limitación.
-- No se calculan rentabilidad, costos, márgenes, causalidad ni pronósticos porque el dataset no permite respaldar esas afirmaciones.
-- La etapa AE2 diseña la pregunta y verifica la viabilidad de los datos; los resultados analíticos profundos quedan para etapas posteriores.
+```bash
+python AE3/src/analisis.py
+```
+
+Para regenerar además notebook ejecutado y Word:
+
+```bash
+python -m pip install -r AE3/requirements_documento.txt
+python AE3/src/construir_entrega.py
+```
+
+El constructor ejecuta realmente cada celda con IPython en proceso y captura texto, salidas enriquecidas y contadores. Este modo evita depender de sockets. El notebook también funciona en Jupyter convencional; no se insertan resultados simulados. Las versiones efectivas están en `AE3/resultados/manifiesto_ejecucion.json`.
+
+El notebook histórico `AE2/notebooks/01_reconocimiento_dataset.ipynb` sigue disponible sin cambios y sí necesita Internet para descargar su CSV.
+
+## Rutas principales
+
+| Ruta | Contenido |
+|---|---|
+| AE2/ | Entrega anterior conservada |
+| AE3/datos/originales/ | CSV original, ficha y atribución |
+| AE3/datos/preparados/cafe_2023_preparado.csv | Base final |
+| AE3/notebooks/02_transformacion_enriquecimiento.ipynb | Notebook ejecutado |
+| AE3/src/ | analisis.py y construir_entrega.py |
+| AE3/documento/AE3_Jose_David_Osorio_Gallego.docx | Avance actualizado |
+| AE3/resultados/ | Tablas por pregunta, controles, diccionario, TXT y manifiesto |
+| AE3/requirements_documento.txt | Dependencias adicionales para regenerar Word |
+
+## Entrega y acceso
+
+Adjuntar el Word en la plataforma y compartir el enlace de **este repositorio**, que conserva AE2 y AE3. Para comprobar acceso del docente, abrir el enlace y los archivos en una ventana privada sin iniciar sesión. La publicación en GitHub no confirma el envío en la plataforma: el estudiante debe realizarlo dentro del plazo.
 
 ## Referencias
 
-- [Ficha del dataset en Hugging Face](https://huggingface.co/datasets/adityasuyal/cafe-sales-cleaned)
-- [Documentación de carga de datasets](https://huggingface.co/docs/datasets/en/loading)
-- [Documentación de DataFrame en pandas](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html)
-
-## Entrega
-
-Adjuntar el documento Word por separado en la plataforma y pegar allí el enlace de este repositorio. Se recomienda realizar commits descriptivos después de cada avance.
+- Suyal, A. (s. f.). [Cafe Sales Dataset Cleaned](https://huggingface.co/datasets/adityasuyal/cafe-sales-cleaned). Revisión fijada y ficha conservadas con el original.
+- pandas. (s. f.). [DataFrame](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html), [to_datetime](https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html) y [groupby](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html).
+- Osorio Gallego, J. D. (2026). Avance AE2, conservado en este repositorio.
