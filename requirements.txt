@@ -4,3 +4,6 @@ jupyterlab>=4.0,<5.0
 ipykernel>=6.0,<8.0
 nbformat>=5.10,<6.0
 nbclient>=0.10,<0.11
+
+# Aplicación de visualización AE4
+-r AE4/requirements.txt
