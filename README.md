@@ -1,9 +1,61 @@
-# Analítica descriptiva de ventas de cafetería · AE2 y AE3
+# Analítica descriptiva de ventas de cafetería · AE2, AE3 y AE4
 
 **Autor:** Jose David Osorio Gallego  
 **Asignatura:** Proyecto Integrado III – Analítica de Datos  
 **Docente:** Andrés Felipe Callejas · **Grupo:** PREICA2602B020038  
 **Institución:** Institución Universitaria Digital de Antioquia
+
+## Entrega final AE4 · Métricas y visualización
+
+La aplicación de Streamlit responde las cuatro preguntas de AE3 con gráficos y
+tablas generados a partir de sus CSV. Incluye el contexto del proyecto, las
+fórmulas, los resultados, las decisiones que podrían apoyar y sus límites.
+
+- [Aplicación Streamlit · código fuente](streamlit_app.py)
+- [Informe final en PDF](AE4/documento/Informe_AE4_Cafeteria.pdf)
+- [Guion de la sustentación de 10 minutos](AE4/Guion_Triple_A.md)
+
+### Ejecutar Streamlit
+
+Desde la raíz del repositorio, con Python 3.11 o 3.12:
+
+```bash
+python -m venv .venv
+```
+
+Activa el entorno con `.\.venv\Scripts\Activate.ps1` en PowerShell o con `source .venv/bin/activate`
+en Linux/macOS. Luego instala y ejecuta:
+
+```bash
+python -m pip install -r AE4/requirements.txt
+python -m streamlit run streamlit_app.py
+```
+
+Abre <http://localhost:8501>. La aplicación usa los CSV de
+`AE3/resultados/` incluidos en el repositorio. No necesita credenciales,
+servicios externos ni descargar el dataset después de instalar dependencias.
+
+### Verificar coherencia con AE3
+
+```bash
+python -m AE4.verificar
+```
+
+La verificación contrasta el CSV preparado con la transformación de la fuente
+fijada, recalcula las cuatro tablas que lee Streamlit y compara valores,
+preguntas y huellas con las exportaciones del notebook. También ejecuta las
+20 conciliaciones de AE3. Para repetir el flujo completo, usa las instrucciones
+de ejecución de AE3 más abajo.
+
+| Ruta | Contenido |
+|---|---|
+| `streamlit_app.py` | Aplicación y gráficos interactivos |
+| `AE4/metricas.py` | Lectura de las tablas y cálculos de los indicadores |
+| `AE4/requirements.txt` | Dependencias de la aplicación |
+| `AE4/verificar.py` | Conciliación de tabla a tabla con AE3 |
+| `AE4/documento/Informe_AE4_Cafeteria.pdf` | Informe integrado del periodo |
+| `AE3/resultados/` | Exportaciones que alimentan la aplicación |
+| `AE3/datos/preparados/` | CSV preparado para reproducir los indicadores |
 
 ## Entrega AE3
 
@@ -117,7 +169,7 @@ El notebook histórico `AE2/notebooks/01_reconocimiento_dataset.ipynb` sigue dis
 
 ## Entrega y acceso
 
-Adjuntar el Word en la plataforma y compartir el enlace de **este repositorio**, que conserva AE2 y AE3. Para comprobar acceso del docente, abrir el enlace y los archivos en una ventana privada sin iniciar sesión. La publicación en GitHub no confirma el envío en la plataforma: el estudiante debe realizarlo dentro del plazo.
+Para la entrega final AE4, adjuntar el PDF integrado en Canvas y compartir el enlace de este repositorio público. El documento en Word de AE3 queda disponible como antecedente.
 
 ## Referencias
 
